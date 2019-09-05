@@ -31,9 +31,15 @@ uDom.onLoad(function() {
 
 var backupUserDataToFile = function() {
     var userDataReady = function(userData) {
+        const dateNowToSensibleString = function() {
+            const now = new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000);
+            return now.toISOString().replace(/\.\d+Z$/, '')
+                                    .replace(/:/g, '.')
+                                    .replace('T', '_');
+        };
         vAPI.download({
             'url': 'data:text/plain,' + encodeURIComponent(JSON.stringify(userData, null, 2)),
-            'filename': uDom('[data-i18n="aboutBackupFilename"]').text()
+            'filename': uDom('[data-i18n="aboutBackupFilename"]').text().replace('{{datetime}}', dateNowToSensibleString())
         });
     };
 

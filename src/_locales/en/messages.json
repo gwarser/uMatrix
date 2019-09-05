@@ -594,7 +594,7 @@
         "description": ""
     },
     "aboutBackupFilename" : {
-        "message": "my-umatrix-backup.txt",
+        "message": "my-umatrix-backup_{{datetime}}.txt",
         "description": "default filename to use"
     },
     "aboutRestoreButton" : {
